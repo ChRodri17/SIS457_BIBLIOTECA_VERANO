@@ -15,12 +15,12 @@
         <tr>
             <th>Codigo</th>
             <th>Nombre</th>
-            <th>Descripcion</th>
+            <th>Descripción</th>
             <th>Precio</th>
-            <th>UsuarioRegistro</th>
-            <th>FechaRegistro</th>
+            <th>Categoria</th>
+            <th>Usuario de Registro</th>
+            <th>Fecha de Registro</th>
             <th>Estado</th>
-            <th>IdCategoriaNavigation</th>
             <th></th>
         </tr>
     </thead>
@@ -40,16 +40,16 @@
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
+                @item.IdCategoriaNavigation.Nombre
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.UsuarioRegistro)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaRegistro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCategoriaNavigation.IdCategoria)
+                @(item.Estado == 1 ? "Activo" : "Inactivo")
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a> |

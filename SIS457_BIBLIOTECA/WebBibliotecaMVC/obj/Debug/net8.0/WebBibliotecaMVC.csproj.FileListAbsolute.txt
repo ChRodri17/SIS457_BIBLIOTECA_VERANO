@@ -259,3 +259,4 @@ H:\SIS457_BIBLIOTECA_VERANO\SIS457_BIBLIOTECA\WebBibliotecaMVC\bin\Debug\net8.0\
 H:\SIS457_BIBLIOTECA_VERANO\SIS457_BIBLIOTECA\WebBibliotecaMVC\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 H:\SIS457_BIBLIOTECA_VERANO\SIS457_BIBLIOTECA\WebBibliotecaMVC\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 H:\SIS457_BIBLIOTECA_VERANO\SIS457_BIBLIOTECA\WebBibliotecaMVC\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+H:\SIS457_BIBLIOTECA_VERANO\SIS457_BIBLIOTECA\WebBibliotecaMVC\obj\Debug\net8.0\WebBibliotecaMVC.sourcelink.json
