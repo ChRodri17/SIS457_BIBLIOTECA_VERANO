@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WebBibliotecaMVC.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Productos</h1>
+
+<p>
+    <a asp-action="Create">Crer Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>UsuarioRegistro</th>
+            <th>FechaRegistro</th>
+            <th>Estado</th>
+            <th>IdCategoriaNavigation</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoriaNavigation.IdCategoria)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdProducto">Detalle</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdProducto">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
