@@ -21,14 +21,14 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
-            var bibliotecaContext = _context.Productos.Include(p => p.IdCategoriaNavigation);
-            return View(await bibliotecaContext.ToListAsync());
+            var labCafeteriaContext = _context.Productos.Include(p => p.IdCategoriaNavigation);
+            return View(await labCafeteriaContext.Where(x => x.Estado != -1).ToListAsync());
         }
 
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Productos == null)
             {
                 return NotFound();
             }
@@ -74,7 +74,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Productos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Productos == null)
             {
                 return NotFound();
             }
@@ -84,7 +84,7 @@ namespace WebBibliotecaMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", producto.IdCategoria);
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nombre", producto.IdCategoria);
             return View(producto);
         }
 
@@ -100,10 +100,11 @@ namespace WebBibliotecaMVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(producto.Nombre))
             {
                 try
                 {
+                    producto.UsuarioRegistro = User.Identity?.Name;
                     _context.Update(producto);
                     await _context.SaveChangesAsync();
                 }
@@ -127,7 +128,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Productos == null)
             {
                 return NotFound();
             }
@@ -148,10 +149,16 @@ namespace WebBibliotecaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Productos == null)
+            {
+                return Problem("Entity set 'BibliotecaContext.Productos'  is null.");
+            }
             var producto = await _context.Productos.FindAsync(id);
             if (producto != null)
             {
-                _context.Productos.Remove(producto);
+                producto.Estado = -1;
+                producto.UsuarioRegistro = User.Identity?.Name ?? "";
+                //_context.Productos.Remove(producto);
             }
 
             await _context.SaveChangesAsync();
@@ -160,7 +167,7 @@ namespace WebBibliotecaMVC.Controllers
 
         private bool ProductoExists(int id)
         {
-            return _context.Productos.Any(e => e.IdProducto == id);
+            return (_context.Productos?.Any(e => e.IdProducto == id)).GetValueOrDefault();
         }
     }
 }
