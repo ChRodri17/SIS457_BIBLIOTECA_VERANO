@@ -60,7 +60,7 @@ namespace WebBibliotecaMVC.Controllers
         {
             if (!string.IsNullOrEmpty(producto.Nombre) && producto.Precio > 0 && !string.IsNullOrEmpty(producto.Codigo) && !string.IsNullOrEmpty(producto.Descripcion))
             {
-                producto.UsuarioRegistro = User.Identity?.Name;
+                producto.UsuarioRegistro = "SIS457";
                 producto.FechaRegistro = DateTime.Now;
                 producto.Estado = 1;
                 _context.Add(producto);
@@ -104,7 +104,7 @@ namespace WebBibliotecaMVC.Controllers
             {
                 try
                 {
-                    producto.UsuarioRegistro = User.Identity?.Name;
+                    producto.UsuarioRegistro = "SIS457";
                     _context.Update(producto);
                     await _context.SaveChangesAsync();
                 }

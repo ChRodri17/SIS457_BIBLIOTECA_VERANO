@@ -27,7 +27,7 @@ public partial class BibliotecaContext : DbContext
 
     public virtual DbSet<VentaDetalle> VentaDetalles { get; set; }
 
-    public virtual DbSet<Ventum> Venta { get; set; }
+    public virtual DbSet<Venta> Venta { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -94,29 +94,21 @@ public partial class BibliotecaContext : DbContext
 
         modelBuilder.Entity<Empleado>(entity =>
         {
-            entity.HasKey(e => e.IdEmpleado).HasName("PK__Empleado__5295297CFC0F3457");
+            entity.HasKey(e => e.IdEmpleado).HasName("PK__Empleado__5295297C2A9528A8");
 
             entity.ToTable("Empleado");
 
             entity.Property(e => e.IdEmpleado).HasColumnName("idEmpleado");
             entity.Property(e => e.ApellidoMaterno)
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("apellidoMaterno");
-            entity.Property(e => e.ApellidoPaterno)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("apellidoPaterno");
             entity.Property(e => e.Cargo)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("cargo");
-            entity.Property(e => e.Direccion)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("direccion");
             entity.Property(e => e.Estado)
-                .HasDefaultValue((short)1)
+                .HasDefaultValueSql("((1))")
                 .HasColumnName("estado");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -187,10 +179,10 @@ public partial class BibliotecaContext : DbContext
             entity.ToTable("Usuario");
 
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
-            entity.Property(e => e.Contraseña)
+            entity.Property(e => e.Clave)
                 .HasMaxLength(30)
                 .IsUnicode(false)
-                .HasColumnName("contraseña");
+                .HasColumnName("clave");
             entity.Property(e => e.Estado)
                 .HasDefaultValue((short)1)
                 .HasColumnName("estado");
@@ -255,7 +247,7 @@ public partial class BibliotecaContext : DbContext
                 .HasConstraintName("fk_VentaDetalle_Venta");
         });
 
-        modelBuilder.Entity<Ventum>(entity =>
+        modelBuilder.Entity<Venta>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Venta__3213E83F1D3E63E3");
 

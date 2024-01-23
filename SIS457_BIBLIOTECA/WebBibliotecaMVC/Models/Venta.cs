@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebBibliotecaMVC.Models;
 
-public partial class Ventum
+public partial class Venta
 {
     public int Id { get; set; }
 
@@ -13,7 +14,11 @@ public partial class Ventum
 
     public decimal TotalVenta { get; set; }
 
-    public DateOnly FechaVenta { get; set; }
+    [Display(Name = "Fecha de Venta")]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+    public DateTime FechaVenta { get; set; }
 
     public string UsuarioRegistro { get; set; } = null!;
 

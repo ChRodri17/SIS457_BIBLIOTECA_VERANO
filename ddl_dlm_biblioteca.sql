@@ -39,8 +39,7 @@ CREATE TABLE Cliente(
 CREATE TABLE Empleado(
   idEmpleado INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   nombre VARCHAR(20) NOT NULL,
-  apellidoPaterno VARCHAR(20) NOT NULL,
-  apellidoMaterno VARCHAR(20) NOT NULL,
+  apellidos VARCHAR(20) NOT NULL,
   telefono VARCHAR(20) NOT NULL,
   direccion VARCHAR(50) NOT NULL,
   cargo VARCHAR(20) NOT NULL,
@@ -51,7 +50,7 @@ CREATE TABLE Usuario(
   idUsuario INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   idEmpleado INT NOT NULL,
   usuario VARCHAR(30) NOT NULL,
-  contraseña VARCHAR(30) NOT NULL,
+  clave VARCHAR(30) NOT NULL,
   FOREIGN KEY (idEmpleado) REFERENCES Empleado(idEmpleado)
 );
 
@@ -120,7 +119,7 @@ ALTER TABLE VentaDetalle ADD estado SMALLINT NOT NULL DEFAULT 1;
 
 CREATE PROC paEmpleadoListar @parametro VARCHAR(50)
 AS
-  SELECT idEmpleado,nombre,apellidoPaterno,apellidoMaterno,telefono,direccion,cargo,salario
+  SELECT idEmpleado,nombre,apellidos,telefono,cargo,salario
   FROM Empleado
   WHERE estado<>-1 AND nombre LIKE '%'+REPLACE(@parametro,' ','%')+'%';
 
@@ -144,10 +143,36 @@ AS
   INNER JOIN Usuario u ON u.idUsuario = v.idUsuario
   INNER JOIN Cliente c ON c.id = v.idCliente 
   WHERE v.estado<>-1 AND c.razonSocial LIKE '%'+REPLACE(@parametro,' ','%')+'%';
-go
+
+CREATE PROC paVentaDetalleListar @parametro VARCHAR(50)
+AS 
+  SELECT vd.*, p.nombre, c.razonSocial
+  FROM VentaDetalle vd
+  INNER JOIN Producto p ON p.idProducto = vd.idProducto
+  INNER JOIN Venta v ON v.id = vd.idVenta
+  INNER JOIN Cliente c ON c.id = v.idCliente 
+  WHERE vd.estado<>-1 AND c.razonSocial LIKE '%'+REPLACE(@parametro,' ','%')+'%';
 
 INSERT INTO Categoria(nombre)
 VALUES ('Cuentos');
 
 INSERT INTO Producto(idCategoria,codigo,nombre,descripcion,precio)
 VALUES (1, 'C123', 'Blanca Nieves y los siete Enanos', 'Una bella princesa, una celosa madrastra y una manzana envenenada.', 15.50);
+
+INSERT INTO Empleado (nombre, apellidos, telefono, direccion, cargo, salario)
+VALUES ('Juan', 'Perez', '554433', 'Calle Calvo; 123', 'Gerente', 5000);
+
+INSERT INTO Usuario (idEmpleado, usuario, clave) 
+VALUES (1, 'juanperez', 'hola123');
+
+SELECT * FROM Usuario;
+
+SELECT U.*, E.nombre 
+FROM Usuario U 
+INNER JOIN Empleado E
+    ON U.idEmpleado = E.idEmpleado;
+
+
+INSERT INTO Cliente (razonSocial, cedulaIdentidad, celular)
+VALUES ('Colegio Monteagudo', '8002563', '7504339');
+

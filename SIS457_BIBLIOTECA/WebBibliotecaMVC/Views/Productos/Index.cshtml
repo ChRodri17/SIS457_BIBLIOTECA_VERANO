@@ -25,38 +25,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @item.IdCategoriaNavigation.Nombre
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioRegistro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistro)
-            </td>
-            <td>
-                @(item.Estado == 1 ? "Activo" : "Inactivo")
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdProducto">Detalle</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdProducto">Eliminar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @item.IdCategoriaNavigation.Nombre
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioRegistro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaRegistro)
+                </td>
+                <td>
+                    @(item.Estado == 1 ? "Activo" : "Inactivo")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdProducto">Detalle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdProducto">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

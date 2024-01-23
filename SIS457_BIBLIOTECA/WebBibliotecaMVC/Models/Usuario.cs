@@ -11,7 +11,7 @@ public partial class Usuario
 
     public string Usuario1 { get; set; } = null!;
 
-    public string Contraseña { get; set; } = null!;
+    public string Clave { get; set; } = null!;
 
     public string UsuarioRegistro { get; set; } = null!;
 
@@ -21,5 +21,5 @@ public partial class Usuario
 
     public virtual Empleado IdEmpleadoNavigation { get; set; } = null!;
 
-    public virtual ICollection<Ventum> Venta { get; set; } = new List<Ventum>();
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

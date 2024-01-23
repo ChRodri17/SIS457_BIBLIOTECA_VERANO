@@ -1,0 +1,69 @@
+﻿@model WebBibliotecaMVC.Models.Usuario
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Usuario</h4>
+<hr />
+div class="container-xxl py-6" style="background-color: black">
+<div class="container">
+    <div class="row g-4">
+        <h1 style="color: white">Editar Usuario</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="IdUsuario" />
+                    <div class="form-group">
+                        <label class="control-label" style="color: #EAA636">Empleado</label>
+                        <select asp-for="IdEmpleado" class="form-control" asp-items="ViewBag.IdEmpleado"></select>
+                        <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="color: #EAA636">Usuario</label>
+                        <input asp-for="Usuario1" class="form-control" />
+                        <span asp-validation-for="Usuario1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="color: #EAA636">Clave</label>
+                        <input asp-for="Clave" class="form-control" />
+                        <span asp-validation-for="Clave" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="UsuarioRegistro" />
+                    <input type="hidden" asp-for="FechaRegistro" />
+                    <div class="form-group">
+                        <label class="control-label" style="color: #EAA636">Estado</label>
+                        <select asp-for="Estado" class="form-select">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div><br />
+                    <div class="form-group">
+                        <input type="submit" style="color: black" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Volver a la Lista</a>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

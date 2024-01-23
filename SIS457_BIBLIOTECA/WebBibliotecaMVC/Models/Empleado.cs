@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebBibliotecaMVC.Models;
 
@@ -8,14 +9,12 @@ public partial class Empleado
     public int IdEmpleado { get; set; }
 
     public string Nombre { get; set; } = null!;
-
-    public string ApellidoPaterno { get; set; } = null!;
+    [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
+    [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Por favor, introduzca solo letras.")]
 
     public string ApellidoMaterno { get; set; } = null!;
 
     public string Telefono { get; set; } = null!;
-
-    public string Direccion { get; set; } = null!;
 
     public string Cargo { get; set; } = null!;
 
