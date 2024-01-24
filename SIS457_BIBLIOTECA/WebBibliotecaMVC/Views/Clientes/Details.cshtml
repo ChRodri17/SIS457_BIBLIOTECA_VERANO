@@ -1,0 +1,48 @@
+﻿@model WebBibliotecaMVC.Models.Cliente
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-xxl py-6" style="background-color: black">
+    <div class="container">
+        <div class="row g-4">
+            <h1 style="color: white">Detalles del Cliente</h1>
+
+            <div>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2" style="color: #EAA636">Razon Social</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.RazonSocial)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Cedula de Identidad</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.CedulaIdentidad)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Celular</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.Celular)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Usuario Registro</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.UsuarioRegistro)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Fecha de Registro</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Model.FechaRegistro.ToLongDateString() @Model.FechaRegistro.ToShortTimeString()
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Estado</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @(Model.Estado == 1 ? "Activo" : "Inactivo")
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+                <a asp-action="Index">Volver a la Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+

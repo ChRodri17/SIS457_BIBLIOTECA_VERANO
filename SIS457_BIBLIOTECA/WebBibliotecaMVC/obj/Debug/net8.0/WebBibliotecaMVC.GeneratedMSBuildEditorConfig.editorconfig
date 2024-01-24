@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = H:\SIS457_BIBLIOTECA_VERANO\SIS457_BIBLIOTECA\WebBibliotecaMVC
 build_property._RazorSourceGeneratorDebug = 
 
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Categorias/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,6 +48,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Categorias/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Clientes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Clientes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Clientes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Clientes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Clientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Empleados/Create.cshtml]
@@ -98,6 +122,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Shared/_LogoutPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dvdXRQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -120,6 +148,46 @@ build_metadata.AdditionalFiles.CssScope =
 
 [H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/VentaDetalles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFEZXRhbGxlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/VentaDetalles/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFEZXRhbGxlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/VentaDetalles/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFEZXRhbGxlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/VentaDetalles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFEZXRhbGxlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/VentaDetalles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFEZXRhbGxlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Ventas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Ventas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Ventas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Ventas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/Ventas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [H:/SIS457_BIBLIOTECA_VERANO/SIS457_BIBLIOTECA/WebBibliotecaMVC/Views/_ViewImports.cshtml]

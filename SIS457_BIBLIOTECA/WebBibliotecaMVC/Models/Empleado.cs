@@ -12,7 +12,7 @@ public partial class Empleado
     [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
     [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Por favor, introduzca solo letras.")]
 
-    public string ApellidoMaterno { get; set; } = null!;
+    public string Apellidos { get; set; } = null!;
 
     public string Telefono { get; set; } = null!;
 

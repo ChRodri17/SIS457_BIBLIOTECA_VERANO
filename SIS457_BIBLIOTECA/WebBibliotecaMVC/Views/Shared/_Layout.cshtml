@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebBibliotecaMVC</title>
+    <title>@ViewData["Title"] - Biblioteca</title>
 
     <!-- Favicon -->
     <link href="~/img/favicon.ico" rel="icon">
@@ -25,35 +25,35 @@
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link rel="stylesheet" href="~/WebBibliotecaMVC.styles.css" asp-append-version="true" />
+    <link href="~/css/style.css" rel="stylesheet">
 </head>
 <body>
     @* <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" role="status"></div>
+    <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
     <!-- Topbar Start -->
     <div class="container-fluid top-bar bg-dark text-light px-0 wow fadeIn" data-wow-delay="0.1s">
-        <div class="row gx-0 align-items-center d-none d-lg-flex">
-            <div class="col-lg-6 px-5 text-start">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a class="small text-light" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="small text-light" href="#">Career</a></li>
-                    <li class="breadcrumb-item"><a class="small text-light" href="#">Terms</a></li>
-                    <li class="breadcrumb-item"><a class="small text-light" href="#">Privacy</a></li>
-                </ol>
-            </div>
-            <div class="col-lg-6 px-5 text-end">
-                <small>Follow us:</small>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn-lg-square text-primary border-end rounded-0" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn-lg-square text-primary border-end rounded-0" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn-lg-square text-primary border-end rounded-0" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn-lg-square text-primary pe-0" href=""><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
+    <div class="row gx-0 align-items-center d-none d-lg-flex">
+    <div class="col-lg-6 px-5 text-start">
+    <ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a class="small text-light" href="#">Home</a></li>
+    <li class="breadcrumb-item"><a class="small text-light" href="#">Career</a></li>
+    <li class="breadcrumb-item"><a class="small text-light" href="#">Terms</a></li>
+    <li class="breadcrumb-item"><a class="small text-light" href="#">Privacy</a></li>
+    </ol>
+    </div>
+    <div class="col-lg-6 px-5 text-end">
+    <small>Follow us:</small>
+    <div class="h-100 d-inline-flex align-items-center">
+    <a class="btn-lg-square text-primary border-end rounded-0" href=""><i class="fab fa-facebook-f"></i></a>
+    <a class="btn-lg-square text-primary border-end rounded-0" href=""><i class="fab fa-twitter"></i></a>
+    <a class="btn-lg-square text-primary border-end rounded-0" href=""><i class="fab fa-linkedin-in"></i></a>
+    <a class="btn-lg-square text-primary pe-0" href=""><i class="fab fa-instagram"></i></a>
+    </div>
+    </div>
+    </div>
     </div>
     <!-- Topbar End --> *@
     <!-- Navbar Start -->
@@ -67,13 +67,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto p-4 p-lg-0">
                 <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Inicio</a>
-                @* @if (User.Identity?.IsAuthenticated == true) *@
+                @if (User.Identity?.IsAuthenticated == true)
                 {
                     <a asp-controller="Productos" asp-action="Index" class="nav-item nav-link">Productos</a>
                     <a asp-controller="Clientes" asp-action="Index" class="nav-item nav-link">Clientes</a>
                     <a asp-controller="Categorias" asp-action="Index" class="nav-item nav-link">Categorias</a>
-                    @* <a asp-controller="Ventas" asp-action="Index" class="nav-item nav-link">Ventas</a> *@
-                    @* <a asp-controller="VentaDetalles" asp-action="Index" class="nav-item nav-link">Detelle Ventas</a> *@
+                    <a asp-controller="Ventas" asp-action="Index" class="nav-item nav-link">Ventas</a>
+                    <a asp-controller="VentaDetalles" asp-action="Index" class="nav-item nav-link">Detelle Ventas</a>
                     @* <a asp-controller="Account" asp-action="Login" class="nav-item nav-link">Iniciar Sesion</a> *@
                     @* <a href="service.html" class="nav-item nav-link">Services</a>
                 <a href="product.html" class="nav-item nav-link">Products</a> *@
@@ -82,21 +82,27 @@
                         <div class="dropdown-menu m-0">
                             <a asp-controller="Empleados" asp-action="Index" class="dropdown-item">Empleados</a>
                             <a asp-controller="Usuarios" asp-action="Index" class="dropdown-item">Usuarios</a>
-                            @*  <a href="404.html" class="dropdown-item"></a> *@
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item"></a>
                         </div>
                     </div>
                 }
                 <a href="contact.html" class="nav-item nav-link">Contacto</a>
                 <a href="service.html" class="nav-item nav-link">Servicios</a>
             </div>
-            <div class=" d-none d-lg-flex">
-                <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
-                    <i class="fa fa-phone text-primary"></i>
+                <div class="d-none d-lg-flex">
+                    <a href="https://wa.me/59167626191" target="_blank">
+                        <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
+                            <i class="fa fa-phone text-primary"></i>
+                        </div>
+                    </a>
+                    <div class="ps-3">
+                        <small class="text-primary mb-0 ">Consultas</small>
+                        <p class="text-light fs-5 mb-0">+591 67626191</p>
                 </div>
-                <div class="ps-3">
-                    <small class="text-primary mb-0">Llámanos</small>
-                    <p class="text-light fs-5 mb-0">+591 786548708</p>
-                </div>
+            </div>
+
+            </div>
                 <div class="d-flex align-items-center justify-content-center ms-4">
                     @if (User.Identity?.IsAuthenticated == false)
                     {
@@ -119,35 +125,35 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Office Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <h4 class="text-light mb-4">Dirección de la Tienda</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Av. Monteagudo 81</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+591 67626191</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>bibliotecara@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href="https://twitter.com/?lang=es" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href="" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-0" href="https://bo.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <h4 class="text-light mb-4">enlaces rápidos</h4>
+                    <a class="btn btn-link" href="">Sobre nosotros</a>
+                    <a class="btn btn-link" href="">Contacta con nosotros</a>
+                    <a class="btn btn-link" href="">Nuestros servicios</a>
+                    <a class="btn btn-link" href="">Términos y Condiciones</a>
+                    <a class="btn btn-link" href="">Apoyo</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <h4 class="text-light mb-4">Otros</h4>
+                    <a class="btn btn-link" href="">Legal</a>
+                    <a class="btn btn-link" href="">Politica y privacidad</a>
+                    <a class="btn btn-link" href="">Promociones y concursos</a>
+                    <a class="btn btn-link" href="">Cofiguracion de cookies</a>
+                    <a class="btn btn-link" href="">Politicas de cookies</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Photo Gallery</h4>
+                    <h4 class="text-light mb-4">Galería de fotos</h4>
                     <div class="row g-2">
                         <div class="col-4">
                             <img class="img-fluid bg-light rounded p-1" src="img/product-1.jpg" alt="Image">

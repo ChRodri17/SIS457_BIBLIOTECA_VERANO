@@ -41,7 +41,6 @@ CREATE TABLE Empleado(
   nombre VARCHAR(20) NOT NULL,
   apellidos VARCHAR(20) NOT NULL,
   telefono VARCHAR(20) NOT NULL,
-  direccion VARCHAR(50) NOT NULL,
   cargo VARCHAR(20) NOT NULL,
   salario FLOAT NOT NULL,
 );
@@ -159,11 +158,11 @@ VALUES ('Cuentos');
 INSERT INTO Producto(idCategoria,codigo,nombre,descripcion,precio)
 VALUES (1, 'C123', 'Blanca Nieves y los siete Enanos', 'Una bella princesa, una celosa madrastra y una manzana envenenada.', 15.50);
 
-INSERT INTO Empleado (nombre, apellidos, telefono, direccion, cargo, salario)
-VALUES ('Juan', 'Perez', '554433', 'Calle Calvo; 123', 'Gerente', 5000);
+INSERT INTO Empleado (nombre, apellidos, telefono, cargo, salario)
+VALUES ('Juan', 'Perez', '554433', 'Gerente', 5000);
 
 INSERT INTO Usuario (idEmpleado, usuario, clave) 
-VALUES (1, 'juanperez', 'hola123');
+VALUES (1, 'jperez', 'sis457');
 
 SELECT * FROM Usuario;
 

@@ -1,0 +1,62 @@
+﻿@model WebBibliotecaMVC.Models.Venta
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-xxl py-6" style="background-color: black">
+    <div class="container">
+        <div class="row g-4">
+            <h1 style="color: white">Editar Venta</h1>
+
+
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label class="control-label" style="color: #EAA636">Usuario</label>
+                            <select asp-for="IdUsuario" class="form-control" asp-items="ViewBag.IdUsuario"></select>
+                            <span asp-validation-for="IdUsuario" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="color: #EAA636">Cliente</label>
+                            <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
+                            <span asp-validation-for="IdCliente" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="color: #EAA636">Tota de Venta</label>
+                            <input asp-for="TotalVenta" class="form-control" />
+                            <span asp-validation-for="TotalVenta" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="color: #EAA636">Fecha de Venta</label>
+                            <input asp-for="FechaVenta" class="form-control" />
+                            <span asp-validation-for="FechaVenta" class="text-danger"></span>
+                        </div>
+                        <input type="hidden" asp-for="UsuarioRegistro" />
+                        <input type="hidden" asp-for="FechaRegistro" />
+                        <input type="hidden" asp-for="Estado" /><br />
+                        <div class="form-group">
+                            <input type="submit" style="color: black" value="Guardar" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <a asp-action="Index">Volver a la Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

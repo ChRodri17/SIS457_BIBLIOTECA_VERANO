@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using WebBibliotecaMVC.Models;
 
 namespace WebBibliotecaMVC.Controllers
 {
+    [Authorize]
     public class UsuariosController : Controller
     {
         private readonly BibliotecaContext _context;
@@ -21,14 +23,14 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            var bibliotecaContext = _context.Usuarios.Include(u => u.IdEmpleadoNavigation);
+            var bibliotecaContext = _context.Usuarios.Where(x => x.Estado != -1).Include(u => u.IdEmpleadoNavigation);
             return View(await bibliotecaContext.ToListAsync());
         }
 
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
@@ -50,7 +52,7 @@ namespace WebBibliotecaMVC.Controllers
             ViewData["IdEmpleado"] = new SelectList(_context.Empleados.Where(x => x.Estado != -1 && x.Estado != 0).Select(x => new
             {
                 x.IdEmpleado,
-                NombreCompleto = $"{x.Nombre} {x.ApellidoMaterno}"
+                NombreCompleto = $"{x.Nombre} {x.Apellidos}"
             }).ToList(), "IdEmpleado", "NombreCompleto");
 
             return View();
@@ -65,8 +67,8 @@ namespace WebBibliotecaMVC.Controllers
         {
             if (!string.IsNullOrEmpty(usuario.Usuario1))
             {
-                usuario.Clave = Util.Encrypt("Hola123");
-                usuario.UsuarioRegistro = "SIS457";
+                usuario.Clave = Util.Encrypt("sis457");
+                usuario.UsuarioRegistro = "LAPTOP-3G16GEOJ\\VICTUS hp";
                 usuario.FechaRegistro = DateTime.Now;
                 usuario.Estado = 1;
                 _context.Add(usuario);
@@ -80,7 +82,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
@@ -90,7 +92,7 @@ namespace WebBibliotecaMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "IdEmpleado", "IdEmpleado", usuario.IdEmpleado);
+            ViewData["IdEmpleado"] = new SelectList(_context.Empleados.Where(x => x.Estado != -1 && x.Estado != 0), "IdEmpleado", "Nombre", usuario.IdEmpleado);
             return View(usuario);
         }
 
@@ -99,7 +101,7 @@ namespace WebBibliotecaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,IdEmpleado,Usuario1,Contraseña,UsuarioRegistro,FechaRegistro,Estado")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,IdEmpleado,Usuario1,Clave,UsuarioRegistro,FechaRegistro,Estado")] Usuario usuario)
         {
             if (id != usuario.IdUsuario)
             {
@@ -110,6 +112,7 @@ namespace WebBibliotecaMVC.Controllers
             {
                 try
                 {
+                    usuario.UsuarioRegistro = User.Identity?.Name;
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
                 }
@@ -133,7 +136,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
@@ -154,10 +157,16 @@ namespace WebBibliotecaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Usuarios == null)
+            {
+                return Problem("Entity set 'bibliotecaContext.Usuarios'  is null.");
+            }
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario != null)
             {
-                _context.Usuarios.Remove(usuario);
+                usuario.Estado = -1;
+                usuario.UsuarioRegistro = User.Identity?.Name ?? "";
+                //_context.Usuarios.Remove(usuario);
             }
 
             await _context.SaveChangesAsync();
@@ -166,7 +175,7 @@ namespace WebBibliotecaMVC.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return _context.Usuarios.Any(e => e.IdUsuario == id);
+            return (_context.Usuarios?.Any(e => e.IdUsuario == id)).GetValueOrDefault();
         }
     }
 }

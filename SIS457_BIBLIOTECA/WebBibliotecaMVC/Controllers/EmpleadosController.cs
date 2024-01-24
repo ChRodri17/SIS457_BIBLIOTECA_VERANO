@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using WebBibliotecaMVC.Models;
 
 namespace WebBibliotecaMVC.Controllers
 {
+    [Authorize]
     public class EmpleadosController : Controller
     {
         private readonly BibliotecaContext _context;
@@ -29,13 +31,13 @@ namespace WebBibliotecaMVC.Controllers
             return View(await empleados.Where(x => x.Estado != -1).ToListAsync());
             //return _context.Empleados != null ? 
             //            View(await _context.Empleados.Where(x => x.Estado != -1).ToListAsync()) :
-            //Problem("Entity set 'LabCafeteriaContext.Empleados'  is null.");
+            //Problem("Entity set 'BibliotecaContext.Empleados'  is null.");
         }
 
         // GET: Empleados/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Empleados == null)
             {
                 return NotFound();
             }
@@ -65,7 +67,7 @@ namespace WebBibliotecaMVC.Controllers
         {
             if (!string.IsNullOrEmpty(empleado.Nombre))
             {
-                empleado.UsuarioRegistro = "SIS457";
+                empleado.UsuarioRegistro = User.Identity?.Name;
                 empleado.FechaRegistro = DateTime.Now;
                 empleado.Estado = 1;
                 _context.Add(empleado);
@@ -78,7 +80,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Empleados/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Empleados == null)
             {
                 return NotFound();
             }
@@ -103,10 +105,11 @@ namespace WebBibliotecaMVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(empleado.Nombre) && empleado.Salario > 0)
             {
                 try
                 {
+                    empleado.UsuarioRegistro = User.Identity?.Name;
                     _context.Update(empleado);
                     await _context.SaveChangesAsync();
                 }
@@ -129,7 +132,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Empleados/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Empleados == null)
             {
                 return NotFound();
             }
@@ -149,10 +152,16 @@ namespace WebBibliotecaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Empleados == null)
+            {
+                return Problem("Entity set 'BibliotecaContext.Empleados'  is null.");
+            }
             var empleado = await _context.Empleados.FindAsync(id);
             if (empleado != null)
             {
-                _context.Empleados.Remove(empleado);
+                empleado.Estado = -1;
+                empleado.UsuarioRegistro = User.Identity?.Name ?? "";
+                //_context.Empleados.Remove(empleado);
             }
 
             await _context.SaveChangesAsync();
@@ -161,7 +170,7 @@ namespace WebBibliotecaMVC.Controllers
 
         private bool EmpleadoExists(int id)
         {
-            return _context.Empleados.Any(e => e.IdEmpleado == id);
+            return (_context.Empleados?.Any(e => e.IdEmpleado == id)).GetValueOrDefault();
         }
     }
 }

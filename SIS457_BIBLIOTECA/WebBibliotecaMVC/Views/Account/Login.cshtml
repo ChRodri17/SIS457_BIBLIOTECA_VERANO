@@ -1,0 +1,40 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl py-6" style="background-color: black">
+    <div class="container">
+        <div class="row g-4">
+            <h1 style="color: white">Iniciar Sesión</h1>
+
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" role="form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label" style="color: #EAA636">usuario</label>
+                    <input asp-for="usuario" class="form-control" placeholder="Usuario" required />
+                    <span asp-validation-for="usuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" style="color: #EAA636">clave</label>
+                    <input asp-for="clave" type="password" class="form-control" placeholder="Contraseña" required />
+                    <span asp-validation-for="clave" class="text-danger"></span>
+                </div>
+                <div class="row" style="margin-top:50px;">
+                    <div class="col-xs-7">
+                        <input type="checkbox" name="recordarme" id="recordarme" />
+                        <label for="recordarme" style="color: #EAA636">Recordarme</label>
+                    </div><br />
+                    <div class="col-xs-5">
+                        <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <a asp-controller="Account" asp-action="ResetPassword">¿Se te olvidó la contraseña?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

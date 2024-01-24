@@ -30,18 +30,18 @@ public partial class BibliotecaContext : DbContext
     public virtual DbSet<Venta> Venta { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Biblioteca;User ID=usrbiblioteca;Password=123456;");
+        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Biblioteca;User ID=usrbiblioteca;Password=123456");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Categoria>(entity =>
         {
-            entity.HasKey(e => e.IdCategoria).HasName("PK__Categori__8A3D240CB5C1F063");
+            entity.HasKey(e => e.IdCategoria).HasName("PK__Categori__8A3D240CFCB34928");
 
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Estado)
-                .HasDefaultValue((short)1)
+                .HasDefaultValueSql("((1))")
                 .HasColumnName("estado");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -60,7 +60,7 @@ public partial class BibliotecaContext : DbContext
 
         modelBuilder.Entity<Cliente>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Cliente__3213E83FE9493B96");
+            entity.HasKey(e => e.Id).HasName("PK__Cliente__3213E83F96DD07C6");
 
             entity.ToTable("Cliente");
 
@@ -72,10 +72,10 @@ public partial class BibliotecaContext : DbContext
             entity.Property(e => e.Celular)
                 .HasMaxLength(8)
                 .IsUnicode(false)
-                .HasDefaultValue("0")
+                .HasDefaultValueSql("('0')")
                 .HasColumnName("celular");
             entity.Property(e => e.Estado)
-                .HasDefaultValue((short)1)
+                .HasDefaultValueSql("((1))")
                 .HasColumnName("estado");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -99,10 +99,10 @@ public partial class BibliotecaContext : DbContext
             entity.ToTable("Empleado");
 
             entity.Property(e => e.IdEmpleado).HasColumnName("idEmpleado");
-            entity.Property(e => e.ApellidoMaterno)
+            entity.Property(e => e.Apellidos)
                 .HasMaxLength(50)
                 .IsUnicode(false)
-                .HasColumnName("apellidoMaterno");
+                .HasColumnName("apellidos");
             entity.Property(e => e.Cargo)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -132,7 +132,7 @@ public partial class BibliotecaContext : DbContext
 
         modelBuilder.Entity<Producto>(entity =>
         {
-            entity.HasKey(e => e.IdProducto).HasName("PK__Producto__07F4A1325A27822C");
+            entity.HasKey(e => e.IdProducto).HasName("PK__Producto__07F4A1324BF93FF5");
 
             entity.ToTable("Producto");
 
@@ -146,7 +146,7 @@ public partial class BibliotecaContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("descripcion");
             entity.Property(e => e.Estado)
-                .HasDefaultValue((short)1)
+                .HasDefaultValueSql("((1))")
                 .HasColumnName("estado");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -169,12 +169,12 @@ public partial class BibliotecaContext : DbContext
             entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.IdCategoria)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Producto__idCate__4222D4EF");
+                .HasConstraintName("FK__Producto__idCate__3D5E1FD2");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A677A7BD25");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A64D2D7350");
 
             entity.ToTable("Usuario");
 
@@ -184,7 +184,7 @@ public partial class BibliotecaContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("clave");
             entity.Property(e => e.Estado)
-                .HasDefaultValue((short)1)
+                .HasDefaultValueSql("((1))")
                 .HasColumnName("estado");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -204,19 +204,19 @@ public partial class BibliotecaContext : DbContext
             entity.HasOne(d => d.IdEmpleadoNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.IdEmpleado)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Usuario__idEmple__3F466844");
+                .HasConstraintName("FK__Usuario__idEmple__38996AB5");
         });
 
         modelBuilder.Entity<VentaDetalle>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__VentaDet__3213E83FF3215360");
+            entity.HasKey(e => e.Id).HasName("PK__VentaDet__3213E83F6A35F489");
 
             entity.ToTable("VentaDetalle");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cantidad).HasColumnName("cantidad");
             entity.Property(e => e.Estado)
-                .HasDefaultValue((short)1)
+                .HasDefaultValueSql("((1))")
                 .HasColumnName("estado");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -249,11 +249,11 @@ public partial class BibliotecaContext : DbContext
 
         modelBuilder.Entity<Venta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Venta__3213E83F1D3E63E3");
+            entity.HasKey(e => e.Id).HasName("PK__Venta__3213E83FFCDB939A");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Estado)
-                .HasDefaultValue((short)1)
+                .HasDefaultValueSql("((1))")
                 .HasColumnName("estado");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -261,6 +261,7 @@ public partial class BibliotecaContext : DbContext
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.FechaVenta)
                 .HasDefaultValueSql("(getdate())")
+                .HasColumnType("date")
                 .HasColumnName("fechaVenta");
             entity.Property(e => e.IdCliente).HasColumnName("idCliente");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");

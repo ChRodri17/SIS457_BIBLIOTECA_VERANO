@@ -5,63 +5,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Producto</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UsuarioRegistro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioRegistro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaRegistro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaRegistro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCategoriaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCategoriaNavigation.IdCategoria)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdProducto">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="container-xxl py-6" style="background-color: black">
+    <div class="container">
+        <div class="row g-4">
+            <h1 style="color: white">Detalles del Producto</h1>
+
+            <div>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2" style="color: #EAA636">Código</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.Codigo)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Nombre</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Descripción </dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.Descripcion)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Precio</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.Precio)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Usuario Registro</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Html.DisplayFor(model => model.UsuarioRegistro)
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Fecha Registro</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Model.FechaRegistro.ToLongDateString() @Model.FechaRegistro.ToShortTimeString()
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Estado</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @(Model.Estado == 1 ? "Activo" : "Inactivo")
+                    </dd>
+                    <dt class="col-sm-2" style="color: #EAA636">Categoria</dt>
+                    <dd class="col-sm-10" style="color: white">
+                        @Model.IdCategoriaNavigation.Nombre
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.IdProducto">Editar</a> |
+                <a asp-action="Index">Volver a la lista</a>
+            </div>
+        </div>
+    </div>
 </div>

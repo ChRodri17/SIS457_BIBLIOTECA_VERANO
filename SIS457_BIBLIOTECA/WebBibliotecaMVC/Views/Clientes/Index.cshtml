@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebBibliotecaMVC.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl py-6" style="background-color: black">
+    <div class="container">
+        <div class="row g-4">
+            <h1 style="color: white">Clientes</h1><br />
+
+            <p class="mx-3">
+                <a asp-action="Create">Crear Nuevo</a>
+            </p>
+            <table class="table">
+                <thead style="color: #EAA636">
+                    <tr>
+                        <th>Nombre/Razón Social</th>
+                        <th>Cedula de Identidad</th>
+                        <th>Celular</th>
+                        <th>Usuario Registro </th>
+                        <th>Fecha Registro</th>
+                        <th>Estado </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="color: white">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RazonSocial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CedulaIdentidad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Celular)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UsuarioRegistro)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaRegistro)
+                            </td>
+                            <td>
+                                @(item.Estado == 1 ? "Activo" : "Inactivo")
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver"><i class="fas fa-eye me-2"></i></a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar"><i class="fas fa-edit me-2"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar"><i class="fas fa-trash me-2"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
