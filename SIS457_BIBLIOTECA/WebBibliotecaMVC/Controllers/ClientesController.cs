@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebBibliotecaMVC.Models;
 
-namespace WebBibliotecaMVC.Controllers
+namespace WebBiblioteMVC.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private readonly BibliotecaContext _context;
@@ -21,13 +23,15 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clientes.ToListAsync());
+            return _context.Clientes != null ?
+                        View(await _context.Clientes.Where(x => x.Estado != -1).ToListAsync()) :
+                        Problem("Entity set 'BibliotecaContext.Clientes'  is null.");
         }
 
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Clientes == null)
             {
                 return NotFound();
             }
@@ -53,10 +57,13 @@ namespace WebBibliotecaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RazonSocial,CedulaIdentidad,Celular,UsuarioRegistro,FechaRegistro,Estado")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,RazonSocial,CedulaIdentidad,Celular")] Cliente cliente)
         {
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(cliente.RazonSocial))
             {
+                cliente.UsuarioRegistro = User.Identity?.Name;
+                cliente.FechaRegistro = DateTime.Now;
+                cliente.Estado = 1;
                 _context.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -67,7 +74,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Clientes == null)
             {
                 return NotFound();
             }
@@ -92,10 +99,11 @@ namespace WebBibliotecaMVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(cliente.RazonSocial))
             {
                 try
                 {
+                    cliente.UsuarioRegistro = User.Identity?.Name;
                     _context.Update(cliente);
                     await _context.SaveChangesAsync();
                 }
@@ -118,7 +126,7 @@ namespace WebBibliotecaMVC.Controllers
         // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Clientes == null)
             {
                 return NotFound();
             }
@@ -138,10 +146,16 @@ namespace WebBibliotecaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Clientes == null)
+            {
+                return Problem("Entity set 'BibliotecaContext.Clientes'  is null.");
+            }
             var cliente = await _context.Clientes.FindAsync(id);
             if (cliente != null)
             {
-                _context.Clientes.Remove(cliente);
+                cliente.Estado = -1;
+                cliente.UsuarioRegistro = User.Identity?.Name ?? "";
+                //_context.Clientes.Remove(cliente);
             }
 
             await _context.SaveChangesAsync();
@@ -150,7 +164,7 @@ namespace WebBibliotecaMVC.Controllers
 
         private bool ClienteExists(int id)
         {
-            return _context.Clientes.Any(e => e.Id == id);
+            return (_context.Clientes?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
